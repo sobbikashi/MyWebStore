@@ -9,6 +9,11 @@ namespace WebStore
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration Configuration)
+        {
+            this.Configuration = Configuration;
+        }
         public void ConfigureServices(IServiceCollection services)
         {           
         }
@@ -21,13 +26,13 @@ namespace WebStore
             }
                         
             app.UseRouting();
-                       
+                                  
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World!");
+                    await context.Response.WriteAsync(Configuration["Greetings"]);
                 });
             });
         }
