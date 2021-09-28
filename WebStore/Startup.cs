@@ -16,8 +16,9 @@ namespace WebStore
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            //добавл€ем систему MVC
-            services.AddControllersWithViews();
+            //добавл€ем систему MVC и компил€цию на лету
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            
         }
                 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
