@@ -13,11 +13,11 @@ namespace WebStore.Controllers
         }
         public IActionResult Index()
         {
-            return Content("Lali-ho!");
+            return View();
         }
-        public IActionResult SecondAction()
-        {
-            return Content(_Configuration["Greetings"]);
-        }
+        //public IActionResult SecondAction()
+        //{
+        //    return View();
+        //}
     }
 }
