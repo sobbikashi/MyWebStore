@@ -15,7 +15,9 @@ namespace WebStore
             this.Configuration = Configuration;
         }
         public void ConfigureServices(IServiceCollection services)
-        {           
+        {
+            //добавляем систему MVC
+            services.AddControllersWithViews();
         }
                 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -30,10 +32,14 @@ namespace WebStore
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
+                endpoints.MapGet("/greetings", async context =>
                 {
                     await context.Response.WriteAsync(Configuration["Greetings"]);
                 });
+                //дефолтные значения переменных: контроллер по умолчанию Home, действие по умолчанию Index, а переменной вообще может и не быть
+                //либо то же самое делается вот так:
+                //endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
