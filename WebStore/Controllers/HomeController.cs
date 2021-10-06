@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using WebStore.Models;
+using System.Linq;
 
 namespace WebStore.Controllers
 {
@@ -32,6 +33,16 @@ namespace WebStore.Controllers
         {
             return View(__Employees);
         }
+        public IActionResult EmployeeDetails(int id)
+        {
+            var employee = __Employees.FirstOrDefault(employee => employee.Id == id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            return View(employee);
+
+        }
         public IActionResult Blog() => View();
         public IActionResult BlogSingle() => View();
         public IActionResult Cart() => View();
@@ -40,7 +51,7 @@ namespace WebStore.Controllers
         public IActionResult Login() => View();
         public IActionResult ProductDetails() => View();
         public IActionResult Shop() => View();
-        public IActionResult NotFound() => View();
+        public IActionResult NotFound404() => View();
 
     }
 }
