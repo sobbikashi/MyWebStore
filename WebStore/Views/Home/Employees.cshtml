@@ -14,6 +14,7 @@
                 <th>Отчество</th>
                 <th>Возраст</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +28,12 @@
                     <td>@employee.Age</td>
                     <td>
                         <a asp-controller="Home" asp-action="EmployeeDetails" asp-route-id="@employee.Id">
-                            <i class="fa-edit"></i>
+                            view
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-controller="Home" asp-action="EditEmployee" asp-route-id="@employee.Id" >
+                            edit
                         </a>
                     </td>
                 </tr>

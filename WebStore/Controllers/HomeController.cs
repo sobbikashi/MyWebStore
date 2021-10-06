@@ -41,7 +41,15 @@ namespace WebStore.Controllers
                 return NotFound();
             }
             return View(employee);
-
+        }
+        public IActionResult EditEmployee(int id)
+        {
+            var employee = __Employees.FirstOrDefault(employee => employee.Id == id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            return View(employee);
         }
         public IActionResult Blog() => View();
         public IActionResult BlogSingle() => View();
