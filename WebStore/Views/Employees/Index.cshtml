@@ -13,8 +13,7 @@
                 <th>Имя</th>
                 <th>Отчество</th>
                 <th>Возраст</th>
-                <th></th>
-                <th></th>
+                <th></th>                
             </tr>
         </thead>
         <tbody>
@@ -27,15 +26,10 @@
                     <td>@employee.Patronymic</td>
                     <td>@employee.Age</td>
                     <td>
-                        <a asp-controller="Home" asp-action="EmployeeDetails" asp-route-id="@employee.Id">
-                            view
+                        <a asp-action="Details" asp-route-id="@employee.Id">
+                            info
                         </a>
-                    </td>
-                    <td>
-                        <a asp-controller="Home" asp-action="EditEmployee" asp-route-id="@employee.Id" >
-                            edit
-                        </a>
-                    </td>
+                    </td>                   
                 </tr>
             }
         </tbody>
