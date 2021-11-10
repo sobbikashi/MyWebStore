@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebStore.Infrastructure.Conventions;
 using WebStore.Infrastructure.Middleware;
+using WebStore.Services;
+using WebStore.Services.Interfaces;
 
 namespace WebStore
 {
@@ -20,7 +22,8 @@ namespace WebStore
         {
             //добавл€ем систему MVC и компил€цию на лету
             services.AddControllersWithViews(opt => opt.Conventions.Add(new TestControllerConvention())).AddRazorRuntimeCompilation();
-            
+            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>(); //»нтерфейс сервиса IEmployeesData, он будет реализован в классе InMemoryEmployeesData
+
         }
                 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
