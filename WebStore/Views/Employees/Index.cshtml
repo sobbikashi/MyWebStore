@@ -43,6 +43,14 @@
                             <i class="fa fa-edit"></i>
                         </a>
                     </td>
+                    <td>
+                        <form asp-action="DeleteConfirmed" asp-route-id="@employee.Id">
+                            <button type="submit">
+                                <i class="fa fa-trash-o text-danger"></i>
+                            </button>
+                        </form>
+                    </td>
+
                 </tr>
             }
         </tbody>
