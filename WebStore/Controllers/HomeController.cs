@@ -20,9 +20,7 @@ namespace WebStore.Controllers
         public IActionResult SecondAction()
         {
             return View("Index");
-        }
-       
-        
+        }             
         
         public IActionResult Blog() => View();
         public IActionResult BlogSingle() => View();

@@ -35,7 +35,7 @@ namespace WebStore
 
             app.UseStaticFiles();
             app.UseRouting();
-            app.UseMiddleware<TestMiddleWare>();
+            //app.UseMiddleware<TestMiddleWare>();
             app.UseWelcomePage("/WelcomePage");
                                   
 
