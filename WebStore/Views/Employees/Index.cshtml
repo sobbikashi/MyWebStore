@@ -5,6 +5,13 @@
 <div class="container">
     <h3>Сотрудники магазина</h3>
     <hr />
+    <p>
+        <a asp-action="Create" class="btn btn-default">Создать 1</a>
+    </p>
+    <p>
+        <a asp-action="Edit" class="btn btn-default">Создать 2</a>
+    </p>
+    <hr />
     <table class="table">
         <thead>
             <tr>
@@ -20,23 +27,23 @@
         <tbody>
             @foreach (var employee in Model) //вот как раз той самой Model, которая в первой строчке
             {
-            <tr>
-                <td>@employee.Id</td>
-                <td>@employee.LastName</td>
-                <td>@employee.FirstName</td>
-                <td>@employee.Patronymic</td>
-                <td>@employee.Age</td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@employee.Id">
-                        <i class="fa fa-info"></i>
-                    </a>
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@employee.Id">
-                        <i class="fa fa-edit"></i>
-                    </a>
-                </td>
-            </tr>
+                <tr>
+                    <td>@employee.Id</td>
+                    <td>@employee.LastName</td>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.Patronymic</td>
+                    <td>@employee.Age</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@employee.Id">
+                            <i class="fa fa-info"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@employee.Id">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

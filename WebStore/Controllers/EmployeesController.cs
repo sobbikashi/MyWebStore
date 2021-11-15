@@ -12,9 +12,9 @@ namespace WebStore.Controllers
     {
         private readonly IEmployeesData _EmployeesData;
 
-        public EmployeesController(IEmployeesData EmployeesData) => _EmployeesData = EmployeesData; 
-        
-        
+        public EmployeesController(IEmployeesData EmployeesData) => _EmployeesData = EmployeesData;
+
+
         //[Route("All")]
         public IActionResult Index() => View(_EmployeesData.GetAll());
         //срабатывает всегда первый, но доступен и второй тоже
@@ -30,11 +30,15 @@ namespace WebStore.Controllers
             return View(employee);
         }
 
-        public IActionResult Create() => View();
+        public IActionResult Create() => View("Edit", new EmployeeViewModel());
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int? id)
         {
-            var employee = _EmployeesData.Get(id);
+            if (id is null)
+            {
+                return View(new EmployeeViewModel());
+            }
+            var employee = _EmployeesData.Get((int)id);
             if (employee is null) return NotFound();
 
             var view_model = new EmployeeViewModel
@@ -60,12 +64,17 @@ namespace WebStore.Controllers
                 Age = Model.Age,
             };
 
-            _EmployeesData.Update(employee);
+            if (employee.Id == 0)
+
+                _EmployeesData.Add(employee);
+
+            else
+                _EmployeesData.Update(employee);
 
             return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int id) => View();
-                       
+
     }
 }
