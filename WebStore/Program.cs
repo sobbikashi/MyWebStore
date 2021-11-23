@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using System;
 
 namespace WebStore
 {
@@ -13,7 +12,7 @@ namespace WebStore
             return Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(host => host.UseStartup<Startup>()
             );
-            
-        }        
+        }   
+        
     }
 }
