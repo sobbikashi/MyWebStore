@@ -17,14 +17,20 @@ namespace WebStore
         {
             this.Configuration = Configuration;
         }
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services) //здесь будут определены ВСЕ сервисы, которые нужны приложению, а еще здесь же добавляются базы данных
         {
             //добавляем систему MVC и компиляцию на лету
             services.AddControllersWithViews(opt => opt.Conventions.Add(new TestControllerConvention())).AddRazorRuntimeCompilation();
-            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>(); //Интерфейс сервиса IEmployeesData, он будет реализован в классе InMemoryEmployeesData
+            //Интерфейс сервиса IEmployeesData, он будет реализован в классе InMemoryEmployeesData
+            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>(); //Объект InMemoryEmployeesData создается один раз на всё время работы приложения,
+                                                                            //нужен, если сервис будет хранить состояние на время работы приложения
 
-        }       
-                
+            //services.AddScoped<IEmployeesData, InMemoryEmployeesData>();  // Объект InMemoryEmployeesData создается один раз для области
+            //services.AddTransient<IEmployeesData, InMemoryEmployeesData>();  //Объект InMemoryEmployeesData создается каждый раз заново
+            //три варианта добавления сервисов
+
+        }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
