@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 using WebStore.Models;
 using WebStore.Services.Interfaces;
 using WebStore.ViewModels;
@@ -34,6 +32,7 @@ namespace WebStore.Controllers
 
         public IActionResult Edit(int? id)
         {
+            
             if (id is null)
             {
                 return View(new EmployeeViewModel());
@@ -55,6 +54,13 @@ namespace WebStore.Controllers
         [HttpPost]
         public IActionResult Edit(EmployeeViewModel Model)
         {
+            if (Model.LastName == "Ахмеджоев")
+                ModelState.AddModelError("LastName", "А регистрация есть??");
+            if (!ModelState.IsValid)
+                return View(Model);
+            if ((Model.LastName == "Asd") && (Model.Name == "Qwe"))
+                ModelState.AddModelError("", "Странное сочетаие имени и фамилии");
+
             var employee = new Employee
             {
                 Id = Model.Id,
