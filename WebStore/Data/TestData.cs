@@ -19,7 +19,7 @@ namespace WebStore.Data
         new Section {Id = 1, Name = "Спорт", Order = 0},
         new Section {Id = 2, Name = "Nike", Order = 0, ParentId = 1},
         new Section {Id = 3, Name = "Under Armour", Order = 1, ParentId = 1},
-        new Section {Id = 4, Name = "Adidas", Order = 2, ParentId = 1},
+        new Section {Id = 4, Name = "Abibas", Order = 2, ParentId = 1},
         new Section {Id = 5, Name = "Puma", Order = 3, ParentId = 1},
         new Section {Id = 6, Name = "ASICS", Order = 4, ParentId = 1},
         new Section {Id = 7, Name = "Для мужчин", Order = 1},
@@ -50,7 +50,7 @@ namespace WebStore.Data
 
         public static IEnumerable<Brand> Brands { get; } = new[]
         {
-            new Brand {Id = 1, Name = "Acne", Order = 0},
+            new Brand {Id = 1, Name = "Пятёрочка", Order = 0},
             new Brand {Id = 2, Name = "Grune Erde", Order = 1},
             new Brand {Id = 3, Name = "Albiro", Order = 2},
             new Brand {Id = 4, Name = "Ronhill", Order = 3},
