@@ -33,6 +33,8 @@ namespace WebStore
             //services.AddScoped<ITestService, TestService>();
             //services.AddScoped<IPrinter, DebugPrinter>();
 
+            services.AddSingleton<IProductData, InMemoryProductData>();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
