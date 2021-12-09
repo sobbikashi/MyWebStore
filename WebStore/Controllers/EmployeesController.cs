@@ -56,10 +56,12 @@ namespace WebStore.Controllers
         {
             if (Model.LastName == "Ахмеджоев")
                 ModelState.AddModelError("LastName", "А регистрация есть??");
-            if (!ModelState.IsValid)
-                return View(Model);
+            
             if ((Model.LastName == "Asd") && (Model.Name == "Qwe"))
                 ModelState.AddModelError("", "Странное сочетаие имени и фамилии");
+
+            if (!ModelState.IsValid)
+                return View(Model);
 
             var employee = new Employee
             {
