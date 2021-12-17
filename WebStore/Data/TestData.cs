@@ -61,29 +61,9 @@ namespace WebStore.Data
 
         public static IEnumerable<Product> Products { get; } = new[]
         {
-            new Product()
-            {
-                Id = 1,
-                Name = "Белое платье",
-                Price = 1025,
-                ImageUrl = "product1.jpg",
-                Order = 0,
-                SectionId = 2,
-                BrandId = 1
-            },
-            new Product()
-            {
-                Id = 2,
-                Name = "Розовое платье",
-                Price = 1025,
-                ImageUrl = "product2.jpg",
-                Order = 1,
-                SectionId = 2,
-                BrandId = 1
-            },
-            new Product()
-            {
-                Id = 3,
+            new Product{Id = 1, Name = "Белое платье", Price = 1025, ImageUrl = "product1.jpg", Order = 0, SectionId = 3, BrandId = 1 },
+            new Product{Id = 2, Name = "Розовое платье", Price = 1025, ImageUrl = "product2.jpg", Order = 1, SectionId = 2, BrandId = 1 },
+            new Product{Id = 3,
                 Name = "Красное платье",
                 Price = 1025,
                 ImageUrl = "product3.jpg",
@@ -91,7 +71,7 @@ namespace WebStore.Data
                 SectionId = 2,
                 BrandId = 1
             },
-            new Product()
+            new Product
             {
                 Id = 4,
                 Name = "Джинсы",
@@ -101,7 +81,7 @@ namespace WebStore.Data
                 SectionId = 2,
                 BrandId = 1
             },
-            new Product()
+            new Product
             {
                 Id = 5,
                 Name = "Лёгкая майка",
@@ -111,7 +91,7 @@ namespace WebStore.Data
                 SectionId = 2,
                 BrandId = 2
             },
-            new Product()
+            new Product
             {
                 Id = 6,
                 Name = "Лёгкое голубое поло",
@@ -121,7 +101,7 @@ namespace WebStore.Data
                 SectionId = 2,
                 BrandId = 2
             },
-            new Product()
+            new Product
             {
                 Id = 7,
                 Name = "Платье белое",
@@ -131,7 +111,7 @@ namespace WebStore.Data
                 SectionId = 2,
                 BrandId = 2
             },
-            new Product()
+            new Product
             {
                 Id = 8,
                 Name = "Костюм кролика",
@@ -141,7 +121,7 @@ namespace WebStore.Data
                 SectionId = 25,
                 BrandId = 2
             },
-            new Product()
+            new Product
             {
                 Id = 9,
                 Name = "Красное китайское платье",
@@ -151,7 +131,7 @@ namespace WebStore.Data
                 SectionId = 25,
                 BrandId = 2
             },
-            new Product()
+            new Product
             {
                 Id = 10,
                 Name = "Женские джинсы",
@@ -159,28 +139,10 @@ namespace WebStore.Data
                 ImageUrl = "product10.jpg",
                 Order = 9,
                 SectionId = 25,
-                BrandId = 3
+                BrandId = 2
             },
-            new Product()
-            {
-                Id = 11,
-                Name = "Джинсы женские",
-                Price = 1025,
-                ImageUrl = "product11.jpg",
-                Order = 10,
-                SectionId = 25,
-                BrandId = 3
-            },
-            new Product()
-            {
-                Id = 12,
-                Name = "Летний костюм",
-                Price = 1025,
-                ImageUrl = "product12.jpg",
-                Order = 11,
-                SectionId = 25,
-                BrandId = 3
-            },
+            new Product{Id = 11, Name = "Джинсы женские", Price = 1025, ImageUrl = "product11.jpg", Order = 10, SectionId = 25, BrandId = 4 },
+            new Product{Id = 12, Name = "Летний костюм", Price = 1025, ImageUrl = "product12.jpg", Order = 11, SectionId = 25, BrandId = 1},
 
         };
     }

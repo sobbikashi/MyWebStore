@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<WebStore.ViewModels.BrandsViewModel>
+
 <div class="brands_products">
     <!--brands_products-->
     <h2>Бренды</h2>
@@ -6,10 +7,12 @@
         <ul class="nav nav-pills nav-stacked">
             @foreach (var brand in Model)
             {
-                <li><a href="#"> <span class="pull-right">(0)</span>@brand.Name</a></li>
-            }
-            
-
+                <li>
+                <a asp-controller="Catalog" asp-action="Index" asp-route-BrandId="@brand.Id">
+                    <span class="pull-right">(4)</span>@brand.Name
+                </a>
+                </li>
+            }            
         </ul>
     </div>
 </div><!--/brands_products-->
