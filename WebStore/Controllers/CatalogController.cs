@@ -25,8 +25,8 @@ namespace WebStore.Controllers
             var products = _ProductData.GetProducts(filter);
             return View(new CatalogViewModel
             {
-                BrandId = BrandId,
-                SectionId = SectionId,
+                BrandId = filter.BrandId,
+                SectionId = filter.SectionId,
                 Products = products
             .OrderBy(p => p.Order)
             .Select(p => new ProductViewModel
