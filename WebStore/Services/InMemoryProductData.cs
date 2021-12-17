@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using WebStore.Data;
+using WebStore.Domain;
 using WebStore.Domain.Entities;
 using WebStore.Services.Interfaces;
-using WebStore.Data;
+
 
 namespace WebStore.Services
 {
@@ -13,6 +13,22 @@ namespace WebStore.Services
         public IEnumerable<Brand> GetBrands() => TestData.Brands;
 
         public IEnumerable<Section> GetSections() => TestData.Sections;
+
+        public IEnumerable<Product> GetProducts(ProductFilter Filter = null)
+        {
+            IEnumerable<Product> query = TestData.Products;
+            //if (Filter?.SectionId != null)
+            //    query = query.Where(product => product.SectionId == Filter.SectionId);
+            //эти две записи эквивалентны, можно писать и так, и так, но второй вариант предпочтительнее, т.к. новее синтаксис
+
+            if (Filter?.SectionId is { } section_id)
+                query = query.Where(product => product.SectionId == section_id);
+
+            if (Filter?.BrandId is { } brand_id)
+                query = query.Where(product => product.SectionId == brand_id);
+
+            return query;
+        }
 
 
     }
