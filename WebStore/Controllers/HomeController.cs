@@ -35,6 +35,5 @@ namespace WebStore.Controllers
         {
             return Redirect("http://yandex.ru");
         }       
-
     }
 }

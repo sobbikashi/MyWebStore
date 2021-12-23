@@ -106,6 +106,5 @@ namespace WebStore.Controllers
             _EmployeesData.Delete(id);
             return RedirectToAction("Index");
         }
-
     }
 }

@@ -19,7 +19,5 @@ namespace WebStore.Components
                 Id = b.Id,
                 Name = b.Name,
             });
-
-
     }
 }

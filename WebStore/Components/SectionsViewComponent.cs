@@ -44,8 +44,7 @@ namespace WebStore.Components
                         Parent = parent_section,
                     });
 
-                parent_section.ChildSections.Sort((a, b) => Comparer<int>.Default.Compare(a.Order, b.Order));
-                                      
+                parent_section.ChildSections.Sort((a, b) => Comparer<int>.Default.Compare(a.Order, b.Order));                                      
             }
 
             parent_sections_views.Sort((a, b) => Comparer<int>.Default.Compare(a.Order, b.Order));
