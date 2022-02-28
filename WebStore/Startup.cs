@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Diagnostics;
 using WebStore.Infrastructure.Conventions;
 using WebStore.Services;
 using WebStore.Services.Interfaces;
@@ -39,9 +38,7 @@ namespace WebStore
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
         {
-            //var test_service = services.GetRequiredService<ITestService>();
-
-            //test_service.Test();
+           
             
             if (env.IsDevelopment())
             {
@@ -67,35 +64,5 @@ namespace WebStore
             });
         }
     }
-
-    //interface ITestService
-    //{
-    //    void Test();
-    //}
-    //class TestService : ITestService
-    //{
-        
-    //    private IPrinter _Printer;
-    //    public TestService(IPrinter Printer) {_Printer = Printer;}
-
-    //    public IPrinter Printer { get; }
-
-    //    public void Test()
-    //    {
-    //        _Printer.Print("Запуск теста");
-    //    }
-    //}
-
-    //interface IPrinter
-    //{
-    //    void Print(string str);
-    //}
-
-    //class DebugPrinter : IPrinter
-    //{
-    //    public void Print(string str)
-    //    {
-    //        Debug.WriteLine(str);
-    //    }
-    //}
+    
 }
