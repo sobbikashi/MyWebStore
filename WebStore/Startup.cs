@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using WebStore.DAL.Context;
 using WebStore.Infrastructure.Conventions;
 using WebStore.Services;
 using WebStore.Services.Interfaces;
@@ -20,6 +22,7 @@ namespace WebStore
         }
         public void ConfigureServices(IServiceCollection services) //здесь будут определены ¬—≈ сервисы, которые нужны приложению, а еще здесь же добавл€ютс€ базы данных
         {
+            services.AddDbContext<WebStoreDB>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MSSQL")));
             //добавл€ем систему MVC и компил€цию на лету
             services.AddControllersWithViews(opt => opt.Conventions.Add(new TestControllerConvention())).AddRazorRuntimeCompilation();
             //»нтерфейс сервиса IEmployeesData, он будет реализован в классе InMemoryEmployeesData
