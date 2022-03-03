@@ -11,6 +11,7 @@ using WebStore.Data;
 using WebStore.Infrastructure.Conventions;
 using WebStore.Services;
 using WebStore.Services.InMemory;
+using WebStore.Services.InSQL;
 using WebStore.Services.Interfaces;
 
 namespace WebStore
@@ -31,12 +32,13 @@ namespace WebStore
             //Интерфейс сервиса IEmployeesData, он будет реализован в классе InMemoryEmployeesData
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>(); //Объект InMemoryEmployeesData создается один раз на всё время работы приложения,
                                                                             //нужен, если сервис будет хранить состояние на время работы приложения
-
+            if (Configuration["ProductDataSource"] == "db")
+                services.AddScoped<IProductData, SqlProductData>();
+            else
+                services.AddScoped<IProductData, InMemoryProductData>();
             //services.AddScoped<IEmployeesData, InMemoryEmployeesData>();  // Объект InMemoryEmployeesData создается один раз для области
             //services.AddTransient<IEmployeesData, InMemoryEmployeesData>();  //Объект InMemoryEmployeesData создается каждый раз заново
-            //три варианта добавления сервисов
-            
-            services.AddSingleton<IProductData, InMemoryProductData>();
+            //три варианта добавления сервисов           
 
         }
 

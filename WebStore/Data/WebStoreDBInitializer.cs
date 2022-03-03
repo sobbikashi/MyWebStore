@@ -14,9 +14,9 @@ namespace WebStore.Data
         private readonly ILogger<WebStoreDBInitializer> _Logger;
 
         public WebStoreDBInitializer(WebStoreDB db, ILogger<WebStoreDBInitializer> Logger)
-        { 
+        {
             _db = db;
-            _Logger = Logger;            
+            _Logger = Logger;
         }
         public void Initialize()
         {
@@ -41,7 +41,7 @@ namespace WebStore.Data
                 _Logger.LogError("Ошибка при инициализации товаров в БД");
                 throw;
             }
-            
+
 
             _Logger.LogInformation("Инициализация БД завершена.");
         }
@@ -92,6 +92,6 @@ namespace WebStore.Data
 
             _Logger.LogInformation("Инициализация товаров выполнена.");
         }
-        
+
     }
 }
