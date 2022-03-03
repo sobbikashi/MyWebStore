@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using WebStore.DAL.Context;
+using WebStore.Data;
 using WebStore.Infrastructure.Conventions;
 using WebStore.Services;
 using WebStore.Services.Interfaces;
@@ -23,6 +24,7 @@ namespace WebStore
         public void ConfigureServices(IServiceCollection services) //здесь будут определены ВСЕ сервисы, которые нужны приложению, а еще здесь же добавляются базы данных
         {
             services.AddDbContext<WebStoreDB>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MSSQL")));
+            services.AddTransient<WebStoreDBInitializer>();
             //добавляем систему MVC и компиляцию на лету
             services.AddControllersWithViews(opt => opt.Conventions.Add(new TestControllerConvention())).AddRazorRuntimeCompilation();
             //Интерфейс сервиса IEmployeesData, он будет реализован в классе InMemoryEmployeesData
@@ -32,16 +34,17 @@ namespace WebStore
             //services.AddScoped<IEmployeesData, InMemoryEmployeesData>();  // Объект InMemoryEmployeesData создается один раз для области
             //services.AddTransient<IEmployeesData, InMemoryEmployeesData>();  //Объект InMemoryEmployeesData создается каждый раз заново
             //три варианта добавления сервисов
-            //services.AddScoped<ITestService, TestService>();
-            //services.AddScoped<IPrinter, DebugPrinter>();
-
+            
             services.AddSingleton<IProductData, InMemoryProductData>();
 
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
         {
-           
+            //var initializer = services.GetRequiredService<WebStoreDBInitializer>();
+            //initializer.Initialize();
+            using (var scope = services.CreateScope())
+                scope.ServiceProvider.GetRequiredService<WebStoreDBInitializer>().Initialize(); //а можно и так сделать, через область с отдельным контекстом ДБ
             
             if (env.IsDevelopment())
             {
