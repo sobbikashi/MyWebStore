@@ -5,10 +5,10 @@ using System.Linq;
 using System;
 using WebStore.Data;
 
-namespace WebStore.Services
+namespace WebStore.Services.InMemory
 {
     public class InMemoryEmployeesData : IEmployeesData
-    {                
+    {
         private int _CurrentMaxId;
 
         public InMemoryEmployeesData()
@@ -56,7 +56,7 @@ namespace WebStore.Services
             db_item.Patronymic = employee.Patronymic;
             db_item.Age = employee.Age;
 
-            
+
 
         }
 
@@ -67,7 +67,7 @@ namespace WebStore.Services
             if (db_item is null) return false;
 
             return TestData.Employees.Remove(db_item);
-        }     
- 
+        }
+
     }
 }
