@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Linq;
 using System.Threading.Tasks;
 using WebStore.Domain.Entities.Identity;
 using WebStore.ViewModels;
@@ -10,11 +12,16 @@ namespace WebStore.Controllers
     {
         private readonly UserManager<User> _UserManager;
         private readonly SignInManager<User> _SignInManager;
+        private readonly ILogger<AccountController> _Logger;
 
-        public AccountController(UserManager<User> UserManager, SignInManager<User> SignInManager)
+        public AccountController(
+            UserManager<User> UserManager, 
+            SignInManager<User> SignInManager, 
+            ILogger<AccountController> Logger)
         {
             _UserManager = UserManager;
             _SignInManager = SignInManager;
+            _Logger = Logger;
         }
 
         #region Register
@@ -23,6 +30,7 @@ namespace WebStore.Controllers
         public async Task<IActionResult> Register(RegisterUserViewModel Model)
         {
             if (!ModelState.IsValid) return View(Model);
+            _Logger.LogInformation("Регистрация нового пользователя {0}", Model.UserName);
             var user = new User
             {
                 UserName = Model.UserName
@@ -31,10 +39,14 @@ namespace WebStore.Controllers
             if (register_result.Succeeded)
             {
                 await _SignInManager.SignInAsync(user, false);
+                _Logger.LogInformation("Пользователь {0} успешно зарегистрирован", user.UserName);
                 return RedirectToAction("Index", "Home");
             }
             foreach (var error in register_result.Errors)
                ModelState.AddModelError("", error.Description);
+            _Logger.LogWarning("Ошибка при регистрации пользователя {0} в системе: {1}", 
+                Model.UserName,
+                string.Join(", ", register_result.Errors.Select(err => err.Description)));
             return View(Model);
         }
         #endregion
