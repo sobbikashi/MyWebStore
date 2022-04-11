@@ -10,8 +10,9 @@ namespace WebStore.Domain.Entities
         public int Order { get; set; }
         public int? ParentId { get; set; }
 
-        [ForeignKey(nameof(ParentId))]
-        public Section Parent { get; set; }
-        public ICollection<Product> Products { get; set; }
+        //[ForeignKey(nameof(ParentId))]
+        //public Section ParentId { get; set; }
+        //public ICollection<Product> Products { get; set; }
+        //public object Parent { get; set; }
     }
 }

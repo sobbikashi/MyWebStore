@@ -58,38 +58,19 @@ namespace WebStore.Data
             _Logger.LogInformation("Инициализация секций...");
             var timer = Stopwatch.StartNew();
 
-            using (_db.Database.BeginTransaction())
-            {
-                _db.Sections.AddRange(TestData.Sections);
-                _db.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Sections] ON ");
-                _db.SaveChanges(); //именно тут формируется SQL-запрос в БД
-                _db.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Sections] OFF ");
-                _db.Database.CommitTransaction();
-            }
+            var sections_pool = TestData.Sections.ToDictionary(section => section.Id);
 
-            _Logger.LogInformation("Инициализация секций выполнена за {0} c", timer.Elapsed.TotalSeconds);
-
-            _Logger.LogInformation("Инициализация брендов...");
-
-            using (_db.Database.BeginTransaction())
-            {
-                _db.Brands.AddRange(TestData.Brands);
-                _db.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Brands] ON ");
-                _db.SaveChanges(); //именно тут формируется SQL-запрос в БД
-                _db.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Brands] OFF ");
-                _db.Database.CommitTransaction();
-            }
-
-            _Logger.LogInformation("Инициализация брендов выполнена за {0} c", timer.Elapsed.TotalSeconds);
-
-            _Logger.LogInformation("Инициализация товаров...");
+            //foreach (var section in TestData.Sections.Where(s => s.ParentId != null))
+            //{
+            //    section.Parent = sections_pool[(int)section.ParentId!];
+            //}
 
             using (_db.Database.BeginTransaction())
             {
                 _db.Products.AddRange(TestData.Products);
-                _db.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Products] ON ");
+                
                 _db.SaveChanges(); //именно тут формируется SQL-запрос в БД
-                _db.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Products] OFF ");
+               
                 _db.Database.CommitTransaction();
             }
 
